@@ -22,6 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-l@#g%8$bhad3a91@c6f!#qdl-v8)h2agw1llnq6d)qrq($^^=%'
 
+AWS_ACCESS_KEY_ID = 'AKIAIT2Z5TDYPX3ARJBA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'sibtc-assets'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
